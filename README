@@ -1,0 +1,21 @@
+Camwatcher is a simple ruby script that monitors a directory for new files and uses the twilio api to send notifications upon finding new files. It is useful as a simple security camera watcher in combination with another program that will drop new files in a directory on your computer when motion is detected on your webcam, such as Periscope (http://www.freeverse.com/mac/product/?id=7002).
+
+Directions:
+
+1) Rename config_sample.rb to config.rb
+
+2) Sign up for a twilio account at http://www.twilio.com to get your SID and AUTH TOKEN.
+
+3) Enter your own values for the configuration variables in config.rb.
+
+For trial twilio accounts, the from number must be your sandbox number.
+
+4) Run:
+
+$ ./camwatcher.rb
+
+5) You may optionally specify some parameters on the command line. Useful for testing.
+
+$ WAIT_INTERVAL=20 INITIAL_DELAY=5 NOTIFY_ON_LOOP=2 ./camwatcher.rb
+
+This script is released under the MIT license and has been tested on OSX.
