@@ -1,5 +1,7 @@
 Camwatcher is a simple ruby script that monitors a directory for new files and uses the twilio api to send notifications upon finding new files. It is useful as a simple security camera watcher in combination with another program that will drop new files in a directory on your computer when motion is detected on your webcam, such as Periscope (http://www.freeverse.com/mac/product/?id=7002). If you make the target a dropbox (http://www.dropbox.com) folder, you can pretty easily monitor the files from a remote device.
 
+Uses the twilio-rb gem: https://github.com/stevegraham/twilio-rb
+
 Directions:
 
 1) Rename config_sample.rb to config.rb
