@@ -1,6 +1,9 @@
 # the path to watch on your computer
 $WATCHDIR = '/your/dropbox/fullpath/camwatcher/*'
 
+# the path to your control file
+$CONTROLFILE = '/your/dropbox/fullpath/cam_control.txt'
+
 # your twilio credentials
 $MY_TWILIO_SID = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 $MY_AUTH_TOKEN = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
