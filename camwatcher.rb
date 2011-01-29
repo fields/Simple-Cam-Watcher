@@ -17,20 +17,22 @@ end
 
 while true
   control_line = File.open($CONTROLFILE, 'r').first
-  # stop until this command goes away
-  if control_line.strip.downcase == "stop"
-    print "%"
-    sleep $WAIT_INTERVAL.to_i
-    next
-  end
-  
-  # sleep for the requested time, then remove the sleep command
-  if control_line.strip.to_i > 0
-    puts "Sleep command received. Sleeping for #{control_line} seconds"
-    sleep control_line.to_i
-    File.open($CONTROLFILE, 'w') {|file|
-      file.truncate(0)
-    }
+  unless control_line.nil?
+    # stop until this command goes away
+    if control_line.strip.downcase == "stop"
+      print "%"
+      sleep $WAIT_INTERVAL.to_i
+      next
+    end
+
+    # sleep for the requested time, then remove the sleep command
+    if control_line.strip.to_i > 0
+      puts "Sleep command received. Sleeping for #{control_line} seconds"
+      sleep control_line.to_i
+      File.open($CONTROLFILE, 'w') {|file|
+        file.truncate(0)
+      }
+    end
   end
 
   newfiles = 0
@@ -51,7 +53,7 @@ while true
     end
   }
 
-#  puts "#{newfiles} found"
+  #  puts "#{newfiles} found"
   if newfiles > 0
     # if we have new files and it's time to notify, send an sms
     if pass % $NOTIFY_ON_LOOP == 0
