@@ -3,6 +3,7 @@
 require 'twilio'
 require './config'
 
+STDOUT.sync = true
 puts "wait interval is #{$WAIT_INTERVAL}"
 puts "sleeping for #{$INITIAL_DELAY} seconds"
 sleep $INITIAL_DELAY.to_i
@@ -17,14 +18,14 @@ end
 while true
   control_line = File.open($CONTROLFILE, 'r').first
   # stop until this command goes away
-  if control_line.downcase == "stop"
+  if control_line.strip.downcase == "stop"
     print "%"
     sleep $WAIT_INTERVAL.to_i
     next
   end
   
   # sleep for the requested time, then remove the sleep command
-  if control_line.to_i > 0
+  if control_line.strip.to_i > 0
     puts "Sleep command received. Sleeping for #{control_line} seconds"
     sleep control_line.to_i
     File.open($CONTROLFILE, 'w') {|file|
@@ -45,7 +46,7 @@ while true
     #  puts "mtime: #{mtime}"
 
     # if the file is newer than the wait interval, flag it as a new file
-    if (Time.now - ctime) < $WAIT_INTERVAL
+    if (Time.now - ctime) < $WAIT_INTERVAL.to_i
       newfiles += 1
     end
   }
