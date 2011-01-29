@@ -16,7 +16,7 @@ Twilio::Config.setup do
 end
 
 while true
-  control_line = File.open($CONTROLFILE, 'r').first
+  control_line = File.open($CONTROLFILE, 'r').first rescue nil
   unless control_line.nil?
     # stop until this command goes away
     if control_line.strip.downcase == "stop"
